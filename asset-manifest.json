@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/pantrol-frontend/static/css/main.e6c13ad2.css",
-    "main.js": "/pantrol-frontend/static/js/main.1dfc95fb.js",
+    "main.js": "/pantrol-frontend/static/js/main.e5d94343.js",
     "index.html": "/pantrol-frontend/index.html",
     "main.e6c13ad2.css.map": "/pantrol-frontend/static/css/main.e6c13ad2.css.map",
-    "main.1dfc95fb.js.map": "/pantrol-frontend/static/js/main.1dfc95fb.js.map"
+    "main.e5d94343.js.map": "/pantrol-frontend/static/js/main.e5d94343.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.1dfc95fb.js"
+    "static/js/main.e5d94343.js"
   ]
 }
