@@ -1,9 +1,10 @@
 import React from 'react';
+import ToolbarHeader from './ToolbarHeader';
 
 export default function App () {
   return (
     <div>
-      App
+      <ToolbarHeader title="Pantrol" />
     </div>
   )
 } 
