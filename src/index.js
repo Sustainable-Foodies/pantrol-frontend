@@ -7,7 +7,8 @@ import {
   Route,
   HashRouter,
 } from "react-router-dom";
-import Home from './app'
+import HomePage from './app'
+import ScanPage from './app/Scan';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -16,7 +17,8 @@ root.render(
     <HashRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/app" element={<Home />} />
+        <Route path="/app" element={<HomePage />} />
+        <Route path="/app/scan" element={<ScanPage />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>

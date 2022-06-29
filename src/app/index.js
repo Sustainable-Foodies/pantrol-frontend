@@ -17,7 +17,7 @@ const fabStyle = {
   right: 16,
 };
 
-export default function Home() {
+export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
 
