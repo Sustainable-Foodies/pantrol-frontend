@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Home from './Home';
+import LandingPage from './LandingPage';
 import {
   Routes,
   Route,
   HashRouter,
 } from "react-router-dom";
-import App from './app'
+import Home from './app'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,8 +15,8 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/app" element={<App />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/app" element={<Home />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>
