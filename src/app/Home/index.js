@@ -10,6 +10,7 @@ import YourDataChart from "./YourDataChart";
 import SpacerVertical from "../../components/Spacer";
 import { Container } from "@mui/material";
 import AddItemAlert from "./AddItemAlert";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const fabStyle = {
   position: "absolute",
@@ -23,7 +24,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <ToolbarHeader title="Pantrol" onMenuClick={() => setIsMenuOpen(true)} />
+      <ToolbarHeader title="Pantrol" onStartButtonClick={() => setIsMenuOpen(true)} StartIcon={MenuIcon} />
       <SideMenu isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
 
       <Container>
