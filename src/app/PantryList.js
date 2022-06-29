@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '@mui/material/List';
 import PantryItem from './PantryItem';
-import Divider from './Divider';
+import { Divider } from '@mui/material';
 
 export default function PantryList ({ list }) {
   return (

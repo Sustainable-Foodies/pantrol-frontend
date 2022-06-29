@@ -8,6 +8,7 @@ import pantryList from "../constants/pantry.list";
 import PantryListHeader from "./PantryListHeader";
 import YourDataChart from "./YourDataChart";
 import SpacerVertical from "./Spacer";
+import { Container } from "@mui/material";
 
 const fabStyle = {
   position: "absolute",
@@ -23,13 +24,13 @@ export default function App() {
       <ToolbarHeader title="Pantrol" onMenuClick={() => setIsMenuOpen(true)} />
       <SideMenu isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
 
-      <div style={{ padding: "0 20px 0" }}>
+      <Container>
         <YourDataChart />
         <SpacerVertical height={10} />
 
         <PantryListHeader />
         <PantryList list={pantryList} />
-      </div>
+      </Container>
 
       <Fab color="primary" aria-label="add" sx={fabStyle}>
         <AddIcon />

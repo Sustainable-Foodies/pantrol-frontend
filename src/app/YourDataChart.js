@@ -6,7 +6,7 @@ export default function YourDataChart() {
     <>
       <ListItem
         secondaryAction={
-          <Link href="#" color="inherit">
+          <Link color="inherit">
             See more
           </Link>
         }
