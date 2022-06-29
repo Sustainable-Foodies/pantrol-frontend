@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import LandingPage from './LandingPage';
 import {
   Routes,
   Route,
   HashRouter,
 } from "react-router-dom";
-import HomePage from './app'
-import ScanPage from './app/Scan';
+import { HomePage, ScanPage, LandingPage } from './app'
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
