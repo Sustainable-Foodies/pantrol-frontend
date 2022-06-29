@@ -5,7 +5,7 @@ import {
   Route,
   HashRouter,
 } from "react-router-dom";
-import { HomePage, ScanPage, LandingPage } from './app'
+import { HomePage, ScanPage, LandingPage, ItemDetailsPage } from './app'
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +17,7 @@ root.render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/app" element={<HomePage />} />
         <Route path="/app/scan" element={<ScanPage />} />
+        <Route path="/app/item" element={<ItemDetailsPage />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>
