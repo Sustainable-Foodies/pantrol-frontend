@@ -7,8 +7,9 @@ import PantryList from "./PantryList";
 import pantryList from "../constants/pantry.list";
 import PantryListHeader from "./PantryListHeader";
 import YourDataChart from "./YourDataChart";
-import SpacerVertical from "./Spacer";
+import SpacerVertical from "../components/Spacer";
 import { Container } from "@mui/material";
+import AddItemAlert from "./AddItemAlert";
 
 const fabStyle = {
   position: "absolute",
@@ -18,6 +19,7 @@ const fabStyle = {
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
 
   return (
     <div>
@@ -32,9 +34,18 @@ export default function App() {
         <PantryList list={pantryList} />
       </Container>
 
-      <Fab color="primary" aria-label="add" sx={fabStyle}>
+      <Fab
+        color="primary"
+        aria-label="add"
+        sx={fabStyle}
+        onClick={() => setIsAddAlertOpen(true)}
+      >
         <AddIcon />
       </Fab>
+
+      {isAddItemAlertOpen && (
+        <AddItemAlert onClose={() => setIsAddAlertOpen(false)} />
+      )}
     </div>
   );
 }
