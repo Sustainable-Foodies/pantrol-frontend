@@ -7,7 +7,7 @@ import FastfoodIcon from '@mui/icons-material/Fastfood';
 
 export default function PantryItem({ onClick, title, subtitle }) {
   return (
-    <ListItemButton>
+    <ListItemButton onClick={onClick}>
       <ListItemAvatar>
         <Avatar>
           <FastfoodIcon />

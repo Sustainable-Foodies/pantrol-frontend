@@ -1,17 +1,19 @@
 import { ListItem, ListItemText, IconButton, Divider } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
-export default function PantryListHeader() {
+export default function PantryListHeader({ title, showFilter }) {
   return (
     <>
       <ListItem
         secondaryAction={
-          <IconButton edge="end" aria-label="delete">
-            <FilterAltIcon />
-          </IconButton>
+          showFilter && (
+            <IconButton edge="end" aria-label="delete">
+              <FilterAltIcon />
+            </IconButton>
+          )
         }
       >
-        <ListItemText primary="Your pantry today:" />
+        <ListItemText primary={title} />
       </ListItem>
       <Divider />
     </>

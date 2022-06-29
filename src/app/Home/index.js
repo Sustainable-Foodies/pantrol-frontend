@@ -31,7 +31,7 @@ export default function HomePage() {
         <YourDataChart />
         <SpacerVertical height={10} />
 
-        <PantryListHeader />
+        <PantryListHeader title="Your pantry today:" showFilter />
         <PantryList list={pantryList} />
       </Container>
 
