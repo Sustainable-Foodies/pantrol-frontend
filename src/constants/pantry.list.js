@@ -1,35 +1,39 @@
-import { getId } from "../utils";
-
 const pantryList = [
   {
-    id: getId(),
-    title: "Watermelon",
-    subtitle: "5 days left",
+    id: "124124",
+    barcode: 'ABC123456',
+    label: "Watermelon",
+    countdown_label: "5 days left",
   },
   {
-    id: getId(),
-    title: "Milk",
-    subtitle: "14 days left",
+    id: "14124",
+    barcode: 'ABC123456',
+    label: "Milk",
+    countdown_label: "14 days left",
   },
   {
-    id: getId(),
-    title: "Cereal",
-    subtitle: "18 days left",
+    id: "12515",
+    barcode: 'ABC123456',
+    label: "Cereal",
+    countdown_label: "18 days left",
   },
   {
-    id: getId(),
-    title: "Coffee",
-    subtitle: "20 days left",
+    id: "24124",
+    barcode: 'ABC123456',
+    label: "Coffee",
+    countdown_label: "20 days left",
   },
   {
-    id: getId(),
-    title: "Apple",
-    subtitle: "22 days left",
+    id: "12512451",
+    barcode: 'ABC123456',
+    label: "Apple",
+    countdown_label: "22 days left",
   },
   {
-    id: getId(),
-    title: "Sugar",
-    subtitle: "26 days left",
+    id: "1243124",
+    barcode: 'ABC123456',
+    label: "Sugar",
+    countdown_label: "26 days left",
   },
 ]
 

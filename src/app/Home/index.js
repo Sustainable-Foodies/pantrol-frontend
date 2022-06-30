@@ -11,6 +11,7 @@ import { SpacerVertical } from "../components";
 import { Container } from "@mui/material";
 import AddItemAlert from "./AddItemAlert";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useNavigate } from "react-router-dom";
 
 const fabStyle = {
   position: "absolute",
@@ -21,6 +22,11 @@ const fabStyle = {
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
+  const navigate = useNavigate()
+
+  const openItemDetails = (item) => {
+    navigate(`/app/item?id=${item.id}`);
+  }
 
   return (
     <div>
@@ -32,7 +38,7 @@ export default function HomePage() {
         <SpacerVertical height={10} />
 
         <PantryListHeader title="Your pantry today:" showFilter />
-        <PantryList list={pantryList} />
+        <PantryList list={pantryList} onItemClick={openItemDetails} />
       </Container>
 
       <Fab

@@ -1,20 +1,31 @@
 import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, Container, TextField } from "@mui/material";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import pantryList from "../../constants/pantry.list";
 import SpacerVertical from "../components/Spacer";
 import ToolbarHeader from "../Home/ToolbarHeader";
 import ImagePlaceholder from "./ImagePlaceholder";
 
-const height = 15
+const height = 15;
 
 export default function ItemDetailsPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [item] = useState(() => {
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+
+    if (!id) return {};
+
+    return pantryList.find((o) => o.id === id) || {};
+  });
 
   return (
     <>
       <ToolbarHeader
-        title="Register a new item"
+        title={item.title || "Register a new item"}
         StartIcon={ArrowBack}
         onStartButtonClick={() => navigate(-1)}
       />
@@ -28,11 +39,16 @@ export default function ItemDetailsPage() {
             </Container>
 
             <Container>
-              <Button fullWidth variant="contained">Scan Barcode</Button>
+              {!item.barcode && (
+                <>
+                  <Button fullWidth variant="contained">
+                    Scan Barcode
+                  </Button>
+                  <SpacerVertical height={height} />
+                </>
+              )}
 
-              <SpacerVertical height={height} />
-
-              <TextField fullWidth label="Barcode" variant="standard" />
+              <TextField fullWidth label="Barcode" variant="standard" disabled={!!item.barcode} value={item.barcode} />
               <SpacerVertical height={height} />
             </Container>
           </Box>
@@ -40,7 +56,7 @@ export default function ItemDetailsPage() {
           <SpacerVertical height={height} />
 
           <Box>
-            <TextField fullWidth label="Add a name" variant="standard" />
+            <TextField fullWidth label="Add a name" variant="standard" value={item.label} />
             <SpacerVertical height={height} />
 
             <TextField fullWidth label="Add weight" variant="standard" />
