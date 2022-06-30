@@ -8,21 +8,27 @@ import PantryListHeader from "../Home/PantryListHeader";
 import PantryList from "../Home/PantryList";
 import pantryList from "../../constants/pantry.list";
 import { SpacerVertical } from "../components";
+import QRCodeReader from "../components/QrCodeReader";
 
 
 export default function ScanPage() {
   const navigate = useNavigate();
   const [list, setList] = useState([])
+  const [isQrReaderOpen, setIsQrReaderOpen] = useState(false)
 
   const onAddGroceriesClick = () => {
-    alert('Pretend it is scanning!')
+    setIsQrReaderOpen(true)
+  }
+
+  const onQrCodeRead = (text) => {
+    setIsQrReaderOpen(false)
     setList(pantryList)
   }
 
   return (
     <>
       <ToolbarHeader
-        title="Scan"
+        title="Scan your receipt"
         StartIcon={ArrowBack}
         onStartButtonClick={() => navigate(-1)}
       />
@@ -39,6 +45,10 @@ export default function ScanPage() {
         <PantryListHeader title="Edit your list" />
         <PantryList list={list} />
       </Container>
+
+      {isQrReaderOpen && (
+        <QRCodeReader onClose={() => setIsQrReaderOpen(false)} onResult={onQrCodeRead} />
+      )}
     </>
   );
 }
