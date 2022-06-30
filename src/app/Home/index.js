@@ -7,7 +7,7 @@ import PantryList from "./PantryList";
 import pantryList from "../../constants/pantry.list";
 import PantryListHeader from "./PantryListHeader";
 import YourDataChart from "./YourDataChart";
-import SpacerVertical from "../../components/Spacer";
+import { SpacerVertical } from "../components";
 import { Container } from "@mui/material";
 import AddItemAlert from "./AddItemAlert";
 import MenuIcon from "@mui/icons-material/Menu";

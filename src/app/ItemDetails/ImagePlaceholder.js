@@ -2,7 +2,7 @@ import { ListItemAvatar, ListItemButton } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
-import SpacerVertical from "../../components/Spacer";
+import SpacerVertical from "../components/Spacer";
 
 const style = {
   backgroundColor: "#797979",

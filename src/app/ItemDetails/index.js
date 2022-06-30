@@ -2,7 +2,7 @@ import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, Container, TextField } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import SpacerVertical from "../../components/Spacer";
+import SpacerVertical from "../components/Spacer";
 import ToolbarHeader from "../Home/ToolbarHeader";
 import ImagePlaceholder from "./ImagePlaceholder";
 

@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import React from "react";
-import Alert from "../../components/Alert";
-import SpacerVertical from "../../components/Spacer";
+import { Alert, SpacerVertical } from "../components";
 import {
   useLocation,
   useNavigate,

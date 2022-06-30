@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ToolbarHeader from "../Home/ToolbarHeader";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +7,17 @@ import AddGroceriesItem from "./AddGroceriesItem";
 import PantryListHeader from "../Home/PantryListHeader";
 import PantryList from "../Home/PantryList";
 import pantryList from "../../constants/pantry.list";
-import SpacerVertical from "../../components/Spacer";
+import { SpacerVertical } from "../components";
 
 
 export default function ScanPage() {
   const navigate = useNavigate();
+  const [list, setList] = useState([])
+
+  const onAddGroceriesClick = () => {
+    alert('Pretend it is scanning!')
+    setList(pantryList)
+  }
 
   return (
     <>
@@ -26,12 +32,12 @@ export default function ScanPage() {
           digital pantry.
         </p>
 
-        <AddGroceriesItem onClick={() => alert('Pretend it is scanning!')} />
+        <AddGroceriesItem onClick={onAddGroceriesClick} />
 
         <SpacerVertical height={20} />
 
         <PantryListHeader title="Edit your list" />
-        <PantryList list={pantryList} />
+        <PantryList list={list} />
       </Container>
     </>
   );
