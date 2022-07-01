@@ -1,13 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function LandingPage () {
-  return (
-    <div>
-      <h1>Landing page goes here!</h1>
-      <p>Click below to navigate to the app!</p>
+  useEffect(() => {
+    window.location.href = 'https://koala-owl-2k2s.squarespace.com/'
+  }, [])
 
-      <Link to="/app">App</Link>
-    </div>
-  );
+  return;
 }
