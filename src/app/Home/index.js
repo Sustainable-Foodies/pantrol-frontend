@@ -7,7 +7,6 @@ import YourDataChart from "./YourDataChart";
 import { SpacerVertical } from "../components";
 import { Container } from "@mui/material";
 import AddItemAlert from "./AddItemAlert";
-import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import AddButton from "./AddButton";
 
