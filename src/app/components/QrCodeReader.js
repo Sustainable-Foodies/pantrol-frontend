@@ -35,7 +35,7 @@ export default function QRCodeReader({ onClose, onResult }) {
         return
       }
 
-      beep.current.play()
+      beep.current.play().catch(() => {})
       lastResult.current = result.text;
       onResult(result.text);
     }
