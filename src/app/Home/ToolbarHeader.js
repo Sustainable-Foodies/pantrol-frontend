@@ -1,14 +1,18 @@
 import React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
+import { SpacerVertical } from "../components";
 
-export default function ToolbarHeader({ title, onStartButtonClick, StartIcon }) {
+export default function ToolbarHeader({
+  title,
+  onStartButtonClick,
+  StartIcon,
+}) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <>
+      <AppBar position="fixed">
         <Toolbar>
           {onStartButtonClick && (
             <IconButton
@@ -27,6 +31,7 @@ export default function ToolbarHeader({ title, onStartButtonClick, StartIcon }) 
           </Typography>
         </Toolbar>
       </AppBar>
-    </Box>
+      <SpacerVertical height={64} />
+    </>
   );
 }
