@@ -27,6 +27,7 @@ const videoWrapper = {
 
 export default function QRCodeReader({ onClose, onResult }) {
   const lastResult = useRef()
+  const beep = useRef(new Audio('https://www.myinstants.com/media/sounds/timer_beep.mp3'))
 
   const onReadResult = (result, error) => {
     if (!!result) {
@@ -34,6 +35,7 @@ export default function QRCodeReader({ onClose, onResult }) {
         return
       }
 
+      beep.current.play()
       lastResult.current = result.text;
       onResult(result.text);
     }
