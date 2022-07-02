@@ -1,5 +1,13 @@
 import { ArrowBack } from "@mui/icons-material";
-import { Box, Button, Container, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { pantryList, categories } from "../../constants/pantry.list";
@@ -14,41 +22,39 @@ const height = 15;
 export default function ItemDetailsPage() {
   const [shouldBlockForm, setShouldBlockForm] = useState(false);
   const [isQrReaderOpen, setIsQrReaderOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
 
   const [item, setItem] = useState(() => {
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
-    const empty = { barcode: "", category: "" };
+    const empty = { barcode: "", category: "", label: "" };
 
     if (!id) return empty;
 
     const temp = pantryList.find((o) => o.id === id);
 
-    if (temp) setShouldBlockForm(true)
+    if (temp) setShouldBlockForm(true);
 
     return temp || empty;
   });
 
-  const showErrorToast = () => {
-
-  }
+  const showErrorToast = () => {};
 
   const onQrCodeRead = (text) => {
     setIsQrReaderOpen(false);
     const foundItem = pantryList.find((o) => o.barcode === text);
 
     if (!foundItem) {
-      showErrorToast()
-      return
+      showErrorToast();
+      return;
     }
 
-    const id = getId()
-    const newItem = {...foundItem, id}
-    
-    setShouldBlockForm(true)
-    navigate(`/app/item?${id}`)
+    const id = getId();
+    const newItem = { ...foundItem, id };
+
+    setShouldBlockForm(true);
+    navigate(`/app/item?${id}`);
     setItem(newItem);
   };
 
@@ -56,13 +62,13 @@ export default function ItemDetailsPage() {
     setItem({
       ...item,
       category: event.target.value,
-    })
+    });
   };
 
   const saveItem = () => {
-    pantryList.push(item)
-    navigate('/app')
-  }
+    pantryList.push(item);
+    navigate("/app");
+  };
 
   return (
     <>
@@ -70,7 +76,11 @@ export default function ItemDetailsPage() {
         title={item.title || "Register a new item"}
         StartIcon={ArrowBack}
         onStartButtonClick={() => navigate(-1)}
-        EndButton={<Button color="inherit" onClick={saveItem}>Save</Button>}
+        EndButton={
+          <Button color="inherit" onClick={saveItem}>
+            Save
+          </Button>
+        }
       />
       <Container>
         <SpacerVertical height={height} />
@@ -139,8 +149,10 @@ export default function ItemDetailsPage() {
               fullWidth
             >
               <MenuItem value="">None</MenuItem>
-              {categories.map(category => (
-                <MenuItem value={category} key={category}>{category}</MenuItem>
+              {categories.map((category) => (
+                <MenuItem value={category} key={category}>
+                  {category}
+                </MenuItem>
               ))}
             </Select>
 
