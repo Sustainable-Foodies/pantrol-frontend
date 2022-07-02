@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ToolbarHeader from "./ToolbarHeader";
-import SideMenu from "./SideMenu";
 import PantryList from "./PantryList";
 import pantryList from "../../constants/pantry.list";
 import PantryListHeader from "./PantryListHeader";
@@ -13,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import AddButton from "./AddButton";
 
 export default function HomePage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
   const navigate = useNavigate()
 
@@ -25,8 +23,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <ToolbarHeader title="Pantrol" onStartButtonClick={() => setIsMenuOpen(true)} StartIcon={MenuIcon} />
-      <SideMenu isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+      <ToolbarHeader title="Pantrol" />
 
       <Container>
         <YourDataChart />
