@@ -50,7 +50,7 @@ export default function ItemDetailsPage() {
         <Box component="form">
           <Box sx={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}>
             <Container>
-              <ImagePlaceholder />
+              <ImagePlaceholder imgUrl={item.img_url} />
             </Container>
 
             <Container>

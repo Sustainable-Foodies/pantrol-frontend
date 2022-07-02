@@ -14,6 +14,7 @@ const pantryList = [
     label: "Färsk milk",
     additional_information: "3% fat",
     countdown_label: "14 days left",
+    category: "Dairy",
     img_url: "https://assets.icanet.se/t_product_large_v1,f_auto/7310865000194.jpg"
   },
   {
@@ -21,6 +22,7 @@ const pantryList = [
     barcode: 'wheat-prarie-gold',
     label: "Prarie Gold Wheat",
     countdown_label: "18 days left",
+    category: "Non Perishable",
     img_url: "http://sc04.alicdn.com/kf/HTB18rnFRVXXXXXvaFXXq6xXFXXXn.jpg",
   },
   {
@@ -28,6 +30,7 @@ const pantryList = [
     barcode: 'coffee-brazil-1kg',
     label: "Coffee Brazil",
     img_url: "https://m.media-amazon.com/images/I/71ua8UmizRL._SL1400_.jpg",
+    category: "Non Perishable",
     countdown_label: "20 days left",
   }, 
 ].map((item) => {

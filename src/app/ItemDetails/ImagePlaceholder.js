@@ -22,15 +22,24 @@ const roundButtonStyle = {
   justifyContent: "center",
 };
 
-export default function ImagePlaceholder() {
-  return (
-    <ListItemButton style={style} onClick={() => alert('Pretend an image is selected!')}>
+export default function ImagePlaceholder({ imgUrl }) {
+  return imgUrl ? (
+    <div style={{ textAlign: 'center' }}>
+      <img src={imgUrl} alt="Food" style={{ height: 80, width: 'auto' }} />
+    </div>
+  ) : (
+    <ListItemButton
+      style={style}
+      onClick={() => alert("Pretend an image is selected!")}
+    >
       <ListItemAvatar>
         <Box style={roundButtonStyle} sx={{ bgcolor: "primary.main" }}>
           <AddIcon sx={{ color: "white" }} />
         </Box>
         <SpacerVertical height={10} />
-        <p style={{ margin: 0, color: "white", fontSize: 'small' }}>Add a picture</p>
+        <p style={{ margin: 0, color: "white", fontSize: "small" }}>
+          Add a picture
+        </p>
       </ListItemAvatar>
     </ListItemButton>
   );
