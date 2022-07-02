@@ -1,8 +1,8 @@
 import { ArrowBack } from "@mui/icons-material";
-import { Box, Button, Container, TextField } from "@mui/material";
+import { Box, Button, Container, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import pantryList from "../../constants/pantry.list";
+import { pantryList, categories } from "../../constants/pantry.list";
 import QRCodeReader from "../components/QrCodeReader";
 import SpacerVertical from "../components/Spacer";
 import ToolbarHeader from "../Home/ToolbarHeader";
@@ -11,8 +11,8 @@ import ImagePlaceholder from "./ImagePlaceholder";
 const height = 15;
 
 export default function ItemDetailsPage() {
-  const shouldRenderScanButton = useRef(true)
-  const [isQrReaderOpen, setIsQrReaderOpen] = useState(false)
+  const shouldRenderScanButton = useRef(true);
+  const [isQrReaderOpen, setIsQrReaderOpen] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,7 +20,7 @@ export default function ItemDetailsPage() {
   const [item, setItem] = useState(() => {
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
-    const empty = { barcode: '' }
+    const empty = { barcode: "" };
 
     if (!id) return empty;
 
@@ -31,11 +31,17 @@ export default function ItemDetailsPage() {
     return temp || empty;
   });
 
-  
   const onQrCodeRead = (text) => {
-    setIsQrReaderOpen(false)
-    setItem({ ...item, barcode: text })
-  }
+    setIsQrReaderOpen(false);
+    setItem({ ...item, barcode: text });
+  };
+
+  const handleChange = (event) => {
+    setItem({
+      ...item,
+      category: event.target.value,
+    })
+  };  
 
   return (
     <>
@@ -56,7 +62,11 @@ export default function ItemDetailsPage() {
             <Container>
               {shouldRenderScanButton.current && (
                 <>
-                  <Button fullWidth variant="contained" onClick={() => setIsQrReaderOpen(true)}>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    onClick={() => setIsQrReaderOpen(true)}
+                  >
                     Scan Barcode
                   </Button>
                   <SpacerVertical height={height} />
@@ -95,8 +105,20 @@ export default function ItemDetailsPage() {
             <TextField fullWidth label="Add weight" variant="standard" />
             <SpacerVertical height={height} />
 
-            <TextField fullWidth label="Category" variant="standard" />
             <SpacerVertical height={height} />
+            <InputLabel id="category">Category</InputLabel>
+            <Select
+              labelId="category"
+              value={item.category}
+              label="Category"
+              onChange={handleChange}
+              disabled={!shouldRenderScanButton.current}
+              fullWidth
+            >
+              {categories.map(category => (
+                <MenuItem value={category} key={category}>{category}</MenuItem>
+              ))}
+            </Select>
 
             <TextField fullWidth label="Ingredients" variant="standard" />
             <SpacerVertical height={height} />

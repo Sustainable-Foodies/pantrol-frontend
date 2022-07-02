@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ToolbarHeader from "./ToolbarHeader";
 import PantryList from "./PantryList";
-import pantryList from "../../constants/pantry.list";
+import { pantryList } from "../../constants/pantry.list";
 import PantryListHeader from "./PantryListHeader";
 import YourDataChart from "./YourDataChart";
 import { SpacerVertical } from "../components";

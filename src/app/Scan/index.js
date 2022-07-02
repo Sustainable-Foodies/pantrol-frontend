@@ -6,7 +6,7 @@ import { Container } from "@mui/system";
 import AddGroceriesItem from "./AddGroceriesItem";
 import PantryListHeader from "../Home/PantryListHeader";
 import PantryList from "../Home/PantryList";
-import pantryList from "../../constants/pantry.list";
+import { pantryList } from "../../constants/pantry.list";
 import { SpacerVertical } from "../components";
 import QRCodeReader from "../components/QrCodeReader";
 
