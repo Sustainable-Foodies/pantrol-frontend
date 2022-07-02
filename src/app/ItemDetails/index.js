@@ -37,16 +37,19 @@ export default function ItemDetailsPage() {
 
   const onQrCodeRead = (text) => {
     setIsQrReaderOpen(false);
-    const temp = pantryList.find((o) => o.barcode === text);
+    const foundItem = pantryList.find((o) => o.barcode === text);
 
-    if (!temp) {
+    if (!foundItem) {
       showErrorToast()
       return
     }
 
+    const id = getId()
+    const newItem = {...foundItem, id}
+    
     setShouldBlockForm(true)
-    navigate(`/app/item?${getId()}`)
-    setItem(temp);
+    navigate(`/app/item?${id}`)
+    setItem(newItem);
   };
 
   const handleChange = (event) => {
@@ -54,7 +57,12 @@ export default function ItemDetailsPage() {
       ...item,
       category: event.target.value,
     })
-  };  
+  };
+
+  const saveItem = () => {
+    pantryList.push(item)
+    navigate('/app')
+  }
 
   return (
     <>
@@ -62,6 +70,7 @@ export default function ItemDetailsPage() {
         title={item.title || "Register a new item"}
         StartIcon={ArrowBack}
         onStartButtonClick={() => navigate(-1)}
+        EndButton={<Button color="inherit" onClick={saveItem}>Save</Button>}
       />
       <Container>
         <SpacerVertical height={height} />

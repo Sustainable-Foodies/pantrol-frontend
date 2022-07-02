@@ -9,6 +9,7 @@ export default function ToolbarHeader({
   title,
   onStartButtonClick,
   StartIcon,
+  EndButton,
 }) {
   return (
     <>
@@ -29,6 +30,7 @@ export default function ToolbarHeader({
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {title}
           </Typography>
+          {EndButton}
         </Toolbar>
       </AppBar>
       <SpacerVertical height={64} />
