@@ -8,7 +8,7 @@ export default function PantryList ({ list, onItemClick }) {
     <List>
       {list.map((item) => (
         <div key={item.id}>
-          <PantryItem title={item.label} subtitle={item.countdown_label} onClick={() => onItemClick(item)} />
+          <PantryItem title={item.label} subtitle={item.subtitle} onClick={() => onItemClick(item)} imgUrl={item.img_url} />
           <Divider />
         </div>
       ))}
