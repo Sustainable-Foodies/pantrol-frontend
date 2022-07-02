@@ -1,8 +1,9 @@
 import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, Container, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { pantryList, categories } from "../../constants/pantry.list";
+import { getId } from "../../utils";
 import QRCodeReader from "../components/QrCodeReader";
 import SpacerVertical from "../components/Spacer";
 import ToolbarHeader from "../Home/ToolbarHeader";
@@ -11,29 +12,41 @@ import ImagePlaceholder from "./ImagePlaceholder";
 const height = 15;
 
 export default function ItemDetailsPage() {
-  const shouldRenderScanButton = useRef(true);
+  const [shouldBlockForm, setShouldBlockForm] = useState(false);
   const [isQrReaderOpen, setIsQrReaderOpen] = useState(false);
-
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const location = useLocation();
 
   const [item, setItem] = useState(() => {
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
-    const empty = { barcode: "" };
+    const empty = { barcode: "", category: "" };
 
     if (!id) return empty;
 
     const temp = pantryList.find((o) => o.id === id);
 
-    if (temp) shouldRenderScanButton.current = false;
+    if (temp) setShouldBlockForm(true)
 
     return temp || empty;
   });
 
+  const showErrorToast = () => {
+
+  }
+
   const onQrCodeRead = (text) => {
     setIsQrReaderOpen(false);
-    setItem({ ...item, barcode: text });
+    const temp = pantryList.find((o) => o.barcode === text);
+
+    if (!temp) {
+      showErrorToast()
+      return
+    }
+
+    setShouldBlockForm(true)
+    navigate(`/app/item?${getId()}`)
+    setItem(temp);
   };
 
   const handleChange = (event) => {
@@ -60,7 +73,7 @@ export default function ItemDetailsPage() {
             </Container>
 
             <Container>
-              {shouldRenderScanButton.current && (
+              {!shouldBlockForm && (
                 <>
                   <Button
                     fullWidth
@@ -96,9 +109,10 @@ export default function ItemDetailsPage() {
           <Box>
             <TextField
               fullWidth
-              label="Add a name"
+              label="Product name"
               variant="standard"
               value={item.label}
+              disabled={shouldBlockForm}
             />
             <SpacerVertical height={height} />
 
@@ -112,9 +126,10 @@ export default function ItemDetailsPage() {
               value={item.category}
               label="Category"
               onChange={handleChange}
-              disabled={!shouldRenderScanButton.current}
+              disabled={shouldBlockForm}
               fullWidth
             >
+              <MenuItem value="">None</MenuItem>
               {categories.map(category => (
                 <MenuItem value={category} key={category}>{category}</MenuItem>
               ))}
