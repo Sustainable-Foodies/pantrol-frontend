@@ -10,7 +10,11 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { pantryList, categories } from "../../constants/pantry.list";
+import {
+  pantryList,
+  categories,
+  weightUnits,
+} from "../../constants/pantry.list";
 import { getId } from "../../utils";
 import QRCodeReader from "../components/QrCodeReader";
 import SpacerVertical from "../components/Spacer";
@@ -28,7 +32,7 @@ export default function ItemDetailsPage() {
   const [item, setItem] = useState(() => {
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
-    const empty = { barcode: "", category: "", label: "" };
+    const empty = { barcode: "", category: "", label: "", weightUnit: "" };
 
     if (!id) return empty;
 
@@ -77,9 +81,11 @@ export default function ItemDetailsPage() {
         StartIcon={ArrowBack}
         onStartButtonClick={() => navigate(-1)}
         EndButton={
-          <Button color="inherit" onClick={saveItem}>
-            Save
-          </Button>
+          shouldBlockForm ? undefined : (
+            <Button color="inherit" onClick={saveItem}>
+              Save
+            </Button>
+          )
         }
       />
       <Container>
@@ -135,12 +141,42 @@ export default function ItemDetailsPage() {
             />
             <SpacerVertical height={height} />
 
-            <TextField fullWidth label="Add weight" variant="standard" />
+            <div style={{ display: "flex" }}>
+              <div style={{ flexGrow: 2, paddingRight: 30, paddingTop: 7 }}>
+                <TextField
+                  fullWidth
+                  label="Weight"
+                  variant="standard"
+                  value={item.weight}
+                  disabled={shouldBlockForm}
+                />
+              </div>
+              <div style={{ flexGrow: 1 }}>
+                <InputLabel id="weight-unit">Unit</InputLabel>
+                <Select
+                  labelId="weight-unit"
+                  value={item.weightUnit}
+                  label="Unit"
+                  variant="standard"
+                  onChange={handleChange}
+                  disabled={shouldBlockForm}
+                  fullWidth
+                >
+                  <MenuItem value=""> </MenuItem>
+                  {weightUnits.map((unit) => (
+                    <MenuItem value={unit} key={unit}>
+                      {unit}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </div>
+            </div>
             <SpacerVertical height={height} />
 
             <SpacerVertical height={height} />
             <InputLabel id="category">Category</InputLabel>
             <Select
+              variant="standard"
               labelId="category"
               value={item.category}
               label="Category"
@@ -156,11 +192,11 @@ export default function ItemDetailsPage() {
               ))}
             </Select>
 
-            <TextField fullWidth label="Ingredients" variant="standard" />
+            {/* <TextField fullWidth label="Ingredients" variant="standard" />
             <SpacerVertical height={height} />
 
             <TextField fullWidth label="Nutrition Facts" variant="standard" />
-            <SpacerVertical height={height} />
+            <SpacerVertical height={height} /> */}
           </Box>
         </Box>
       </Container>
