@@ -25,6 +25,7 @@ const height = 15;
 
 export default function ItemDetailsPage() {
   const [shouldBlockForm, setShouldBlockForm] = useState(false);
+  const [shouldHideSaveButton, setShouldHideSaveButton] = useState(false);
   const [isQrReaderOpen, setIsQrReaderOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,7 +39,10 @@ export default function ItemDetailsPage() {
 
     const temp = pantryList.find((o) => o.id === id);
 
-    if (temp) setShouldBlockForm(true);
+    if (temp) {
+      setShouldHideSaveButton(true);
+      setShouldBlockForm(true);
+    }
 
     return temp || empty;
   });
@@ -70,7 +74,7 @@ export default function ItemDetailsPage() {
   };
 
   const saveItem = () => {
-    pantryList.push(item);
+    pantryList.unshift(item);
     navigate("/app");
   };
 
@@ -81,7 +85,7 @@ export default function ItemDetailsPage() {
         StartIcon={ArrowBack}
         onStartButtonClick={() => navigate(-1)}
         EndButton={
-          shouldBlockForm ? undefined : (
+          shouldHideSaveButton ? undefined : (
             <Button color="inherit" onClick={saveItem}>
               Save
             </Button>
