@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import ToolbarHeader from "./ToolbarHeader";
 import SideMenu from "./SideMenu";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
 import PantryList from "./PantryList";
 import pantryList from "../../constants/pantry.list";
 import PantryListHeader from "./PantryListHeader";
@@ -12,12 +10,7 @@ import { Container } from "@mui/material";
 import AddItemAlert from "./AddItemAlert";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
-
-const fabStyle = {
-  position: "absolute",
-  bottom: 16,
-  right: 16,
-};
+import AddButton from "./AddButton";
 
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,6 +20,8 @@ export default function HomePage() {
   const openItemDetails = (item) => {
     navigate(`/app/item?id=${item.id}`);
   }
+
+  const onAddClick = () => setIsAddAlertOpen(true)
 
   return (
     <div>
@@ -41,14 +36,7 @@ export default function HomePage() {
         <PantryList list={pantryList} onItemClick={openItemDetails} />
       </Container>
 
-      <Fab
-        color="primary"
-        aria-label="add"
-        sx={fabStyle}
-        onClick={() => setIsAddAlertOpen(true)}
-      >
-        <AddIcon />
-      </Fab>
+      <AddButton onClick={onAddClick} />
 
       {isAddItemAlertOpen && (
         <AddItemAlert onClose={() => setIsAddAlertOpen(false)} />
