@@ -14,7 +14,7 @@ import {
   pantryList,
   categories,
   weightUnits,
-} from "../../constants/pantry.list";
+} from "../../constants/mock.data";
 import { getId } from "../../utils";
 import QRCodeReader from "../components/QrCodeReader";
 import SpacerVertical from "../components/Spacer";

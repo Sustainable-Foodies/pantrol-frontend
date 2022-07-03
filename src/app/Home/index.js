@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import ToolbarHeader from "./ToolbarHeader";
 import PantryList from "./PantryList";
-import { pantryList as originalPantryList } from "../../constants/pantry.list";
+import { pantryList as originalPantryList } from "../../constants/mock.data";
 import PantryListHeader from "./PantryListHeader";
 import YourDataChart from "./YourDataChart";
 import { SpacerVertical } from "../components";
