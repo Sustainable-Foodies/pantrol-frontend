@@ -1,6 +1,6 @@
 import { getId } from "../utils/index";
 
-const list = [
+export const list = [
   {
     id: "0001",
     barcode: "sugar-uniao-1kg",

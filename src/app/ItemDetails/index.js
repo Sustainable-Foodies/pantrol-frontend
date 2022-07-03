@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { categories, weightUnits } from "../../constants/mock.data";
-import { getId } from "../../utils";
+import { getId, getParamFromUrl } from "../../utils";
 import QRCodeReader from "../components/QrCodeReader";
 import SpacerVertical from "../components/Spacer";
 import ToolbarHeader from "../Home/ToolbarHeader";
@@ -33,37 +33,50 @@ export default function ItemDetailsPage() {
   const [item, setItem] = useState(() => {
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
+    const barcode = params.get("barcode");
     const empty = { barcode: "", category: "", label: "", weightUnit: "" };
 
-    if (!id) return empty;
+    if (id) {
+      const temp = pantryList.find((o) => o.id === id);
 
-    const temp = pantryList.find((o) => o.id === id);
+      if (temp) {
+        setShouldHideSaveButton(true);
+        setShouldBlockForm(true);
+      }
+  
+      return temp || empty;
+    } else if (barcode) {
+      const foundItem = pantryList.find((o) => o.barcode === barcode);
+      
+      if (!foundItem) return empty
 
-    if (temp) {
-      setShouldHideSaveButton(true);
-      setShouldBlockForm(true);
+      const id = getId();
+      return { ...foundItem, id }
     }
 
-    return temp || empty;
+    return empty;
   });
 
-  const showErrorToast = () => {};
-
-  const onQrCodeRead = (text) => {
+  const onQrCodeRead = (potentialUrl) => {
     setIsQrReaderOpen(false);
-    const foundItem = pantryList.find((o) => o.barcode === text);
+
+    const barcode = getParamFromUrl(potentialUrl, "barcode");
+
+    if (!barcode) {
+      return;      
+    }
+   
+    const foundItem = pantryList.find((o) => o.barcode === barcode);
 
     if (!foundItem) {
-      showErrorToast();
       return;
     }
+    
+    setShouldBlockForm(true);
+    navigate(`/app/item?barcode=${barcode}`);
 
     const id = getId();
-    const newItem = { ...foundItem, id };
-
-    setShouldBlockForm(true);
-    navigate(`/app/item?${id}`);
-    setItem(newItem);
+    setItem({ ...foundItem, id });
   };
 
   const handleChange = (event) => {

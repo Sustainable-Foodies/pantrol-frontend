@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react'
-import { pantryList } from '../../constants/mock.data'
+import { list, pantryList, pantryListConsumed } from '../../constants/mock.data'
 
 const AppStateContext = createContext()
 const AppActionsContext = createContext()
@@ -7,6 +7,8 @@ const AppDispatchContext = createContext()
 
 const initialState = {
   pantryList: pantryList,
+  pantryListConsumed: pantryListConsumed,
+  list: list,
 }
 
 function AppProvider ({ children }) {
