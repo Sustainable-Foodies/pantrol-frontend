@@ -7,7 +7,7 @@ const pantryList = [
     additional_information: "1kg",
     category: "Non Perishable",
     weight: 1,
-    weightUnit: 'kg',
+    weightUnit: "kg",
     img_url:
       "https://pitangabrasil.se/____impro/1/webshopmedia/Acucar%20uniao-1524043011382.jpg?&withoutEnlargement&resize=960,9999",
   },
@@ -19,7 +19,7 @@ const pantryList = [
     countdown_label: "14 days left",
     category: "Dairy",
     weight: 1,
-    weightUnit: 'liter',
+    weightUnit: "liter",
     img_url:
       "https://assets.icanet.se/t_product_large_v1,f_auto/7310865000194.jpg",
   },
@@ -29,7 +29,7 @@ const pantryList = [
     label: "Prarie Gold Wheat",
     countdown_label: "18 days left",
     weight: 1,
-    weightUnit: 'kg',
+    weightUnit: "kg",
     category: "Non Perishable",
     img_url: "http://sc04.alicdn.com/kf/HTB18rnFRVXXXXXvaFXXq6xXFXXXn.jpg",
   },
@@ -41,7 +41,20 @@ const pantryList = [
     category: "Non Perishable",
     countdown_label: "20 days left",
     weight: 1,
-    weightUnit: 'kg',
+    weightUnit: "kg",
+  },
+  {
+    id: "0005",
+    barcode: "farsk-milk-1l",
+    label: "Färsk milk",
+    additional_information: "3% fat",
+    countdown_label: "14 days left",
+    category: "Dairy",
+    weight: 1,
+    weightUnit: "liter",
+    isConsumed: true,
+    img_url:
+      "https://assets.icanet.se/t_product_large_v1,f_auto/7310865000194.jpg",
   },
 ].map((item) => {
   item.subtitle = [item.countdown_label, item.additional_information]
@@ -61,6 +74,6 @@ const categories = Object.keys(
     }, {})
 );
 
-const weightUnits = ["kg", "oz", "gallon", "liter"]
+const weightUnits = ["kg", "oz", "gallon", "liter"];
 
 export { categories, pantryList, weightUnits };

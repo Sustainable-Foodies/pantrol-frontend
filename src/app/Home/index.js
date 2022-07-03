@@ -1,20 +1,25 @@
 import React, { useMemo, useState } from "react";
 import ToolbarHeader from "./ToolbarHeader";
 import PantryList from "./PantryList";
-import { pantryList } from "../../constants/pantry.list";
+import { pantryList as originalPantryList } from "../../constants/pantry.list";
 import PantryListHeader from "./PantryListHeader";
 import YourDataChart from "./YourDataChart";
 import { SpacerVertical } from "../components";
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import AddItemAlert from "./AddItemAlert";
 import { useNavigate } from "react-router-dom";
 import AddButton from "./AddButton";
 import ActionToolbarHeader from "./ActionToolbarHeader";
 
+const filterOutConsumed = (list) => {
+  return list.filter((obj) => !obj.isConsumed)
+}
+
 export default function HomePage() {
   const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState({});
+  const [pantryList, setPantryList] = useState(filterOutConsumed(originalPantryList))
 
   const openItemDetails = (item) => {
     navigate(`/app/item?id=${item.id}`);
@@ -29,6 +34,11 @@ export default function HomePage() {
     });
   };
 
+  const consumeItems = () => {
+    setPantryList(pantryList.filter(item => !selectedItems[item.id]))
+    setSelectedItems({})
+  }
+
   const amountOfSelectedItems = useMemo(() => {
     return Object.values(selectedItems).filter((bool) => bool).length;
   }, [selectedItems]);
@@ -39,6 +49,7 @@ export default function HomePage() {
         <ActionToolbarHeader
           title={`${amountOfSelectedItems} items selected`}
           onUnselectClick={() => setSelectedItems({})}
+          endButtons={[<Button key="consume-btn" color="inherit" onClick={consumeItems}>Consume</Button>]}
         />
       ) : (
         <ToolbarHeader

@@ -6,11 +6,10 @@ import IconButton from "@mui/material/IconButton";
 import { SpacerVertical } from "../components";
 import { ArrowBack } from "@mui/icons-material";
 
-
 export default function ActionToolbarHeader({
   title,
   onUnselectClick,
-  EndButton,
+  endButtons = [],
 }) {
   return (
     <>
@@ -29,7 +28,9 @@ export default function ActionToolbarHeader({
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {title}
           </Typography>
-          {EndButton}
+          {endButtons.map((btn) => (
+            btn
+          ))}
         </Toolbar>
       </AppBar>
       <SpacerVertical height={64} />
