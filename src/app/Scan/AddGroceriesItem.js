@@ -14,13 +14,14 @@ const roundButtonStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: '#E45A5A',
 };
 
 export default function AddGroceriesItem({ onClick }) {
   return (
     <ListItemButton onClick={onClick}>
       <ListItemAvatar sx={{ pt: '10px', pb: '10px' }}>
-        <Box style={roundButtonStyle} sx={{ bgcolor: 'primary.main' }}>
+        <Box style={roundButtonStyle}>
           <AddIcon sx={{ color: 'white' }} />
         </Box>
       </ListItemAvatar>

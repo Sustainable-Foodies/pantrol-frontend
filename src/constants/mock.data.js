@@ -67,7 +67,7 @@ export const list = [
       "https://lh6.googleusercontent.com/wb4dc8h4b_sqR5lzkcrYA6VX_e06rDcSedavzwLQu6afwX_2Gwjo_U3rCyLx4fcCZDdywBh0DfX8JBEU5kbV=w1920-h975",
   },
   {
-    label: "Broccolis",
+    label: "Broccoli",
     additional_information: "fat 0.4g, calories 31",
     countdown_label: "1 day left",
     category: "Perishable",
@@ -77,7 +77,7 @@ export const list = [
       "https://lh5.googleusercontent.com/xWV95yIRNHDn5kYkyEXBQpcWfA3jmMackYyZNlS43VGjXAeeVeOuLNeX9-729HIpNgcwV93me5Vvb50-h_tP=w1920-h975-rw",
   },
   {
-    label: "Blue band",
+    label: "Blue band butter",
     additional_information: "fat 14.1g",
     countdown_label: "9 months left",
     category: "Perishable",
@@ -97,7 +97,7 @@ export const list = [
       "https://lh5.googleusercontent.com/B6_Z0cEVsJvF9mQrSI9s8g3lodUrHl9LNORD3kBgiG_tb42OmvDYrMAyogw9_FqH5HvlFsDzhih2_eV5Fzwj=w1920-h975",
   },
   {
-    label: "Indomie",
+    label: "Indomie Instant Noodles",
     additional_information: "fat 16g, sugar 6g",
     category: "Non Perishable",
     weight: 300,
