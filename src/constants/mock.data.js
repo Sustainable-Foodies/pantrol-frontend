@@ -71,15 +71,19 @@ export const weightUnits = ["kg", "oz", "gallon", "liter"];
 export const pantryList = list.filter((item) => !item.isConsumed);
 export const pantryListConsumed = list.filter((item) => item.isConsumed);
 
+const preDefinedCategories = ['Fish', 'Seafood', 'Meat', 'Poultry', 'Dairy', 'Fruit', 'Vegetable', 'Leftover', 'Frozen food', 'Pasta']
 export const categories = Object.keys(
   pantryList
     .map((o) => o.category)
-    .filter((o) => o)
+    .concat(preDefinedCategories)
+    .filter((o) => o) // Remove null
+    .sort((a,b) => b > a ? -1 : 1) // Sort
     .reduce((acc, cur) => {
       acc[cur] = true;
       return acc;
     }, {})
 );
+
 
 const receipts = [
   {
