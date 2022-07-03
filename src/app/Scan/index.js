@@ -32,7 +32,7 @@ export default function ScanPage() {
       const url = new URL(potentialUrl)
       const params = new URLSearchParams(url.hash.split('?')[1])
       const id = params.get('id')
-      receipt = receipt[id]
+      receipt = getReceipt(id)
     } catch (err) {
       // Ignore
     } finally {
