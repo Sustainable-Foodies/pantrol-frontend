@@ -1,25 +1,36 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ToolbarHeader from "./ToolbarHeader";
 import PantryList from "./PantryList";
-import { pantryList as originalPantryList } from "../../constants/mock.data";
 import PantryListHeader from "./PantryListHeader";
 import YourDataChart from "./YourDataChart";
 import { SpacerVertical } from "../components";
 import { Button, Container } from "@mui/material";
 import AddItemAlert from "./AddItemAlert";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AddButton from "./AddButton";
 import ActionToolbarHeader from "./ActionToolbarHeader";
-
-const filterOutConsumed = (list) => {
-  return list.filter((obj) => !obj.isConsumed)
-}
+import { useApp } from "../store";
 
 export default function HomePage() {
   const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState({});
-  const [pantryList, setPantryList] = useState(filterOutConsumed(originalPantryList))
+  const location = useLocation()
+  const { state: { pantryList }, actions: { setPantryList } } = useApp()
+
+  useEffect(() => {
+    if (location.state?.list) {
+      const list = [...location.state.list]
+
+      setPantryList([
+        ...list,
+        ...pantryList,
+      ])
+
+      delete location.state.list
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const openItemDetails = (item) => {
     navigate(`/app/item?id=${item.id}`);

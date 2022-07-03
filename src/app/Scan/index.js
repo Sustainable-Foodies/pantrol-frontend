@@ -6,7 +6,7 @@ import { Container } from "@mui/system";
 import AddGroceriesItem from "./AddGroceriesItem";
 import PantryListHeader from "../Home/PantryListHeader";
 import PantryList from "../Home/PantryList";
-import { receipts } from "../../constants/mock.data";
+import { getReceipt } from "../../constants/mock.data";
 import { SpacerVertical } from "../components";
 import QRCodeReader from "../components/QrCodeReader";
 import { Button } from "@mui/material";
@@ -17,7 +17,7 @@ export default function ScanPage() {
 
   const [list, setList] = useState(() => {
     const id = params.get("id");
-    const receipt = receipts.find((r) => r.id === id);
+    const receipt = getReceipt(id)
     return receipt?.items || [];
   });
   const [isQrReaderOpen, setIsQrReaderOpen] = useState(false);

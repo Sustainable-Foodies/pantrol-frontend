@@ -1,4 +1,6 @@
-export const pantryList = [
+import { getId } from "../utils/index";
+
+const list = [
   {
     id: "0001",
     barcode: "sugar-uniao-1kg",
@@ -64,6 +66,11 @@ export const pantryList = [
   return item;
 });
 
+export const weightUnits = ["kg", "oz", "gallon", "liter"];
+
+export const pantryList = list.filter((item) => !item.isConsumed);
+export const pantryListConsumed = list.filter((item) => item.isConsumed);
+
 export const categories = Object.keys(
   pantryList
     .map((o) => o.category)
@@ -74,13 +81,23 @@ export const categories = Object.keys(
     }, {})
 );
 
-export const weightUnits = ["kg", "oz", "gallon", "liter"];
+const receipts = [
+  {
+    id: "0001",
+    items: [pantryList[2], pantryList[1], pantryList[0]],
+  },
+];
 
-export const receipts = [{
-  id: '0001',
-  items: [
-    pantryList[2],
-    pantryList[1],
-    pantryList[0],
-  ]
-}]
+export const getReceipt = (id) => {
+  const receipt = receipts.find((r) => r.id === id);
+
+  if (receipt) {
+    return {
+      ...receipt,
+      items: receipt.items.map((item) => ({
+        ...item,
+        id: getId(),
+      })),
+    };
+  }
+};
