@@ -11,6 +11,7 @@ import { SpacerVertical } from "../components";
 import QRCodeReader from "../components/QrCodeReader";
 import { Button } from "@mui/material";
 import ActionToolbarHeader from "../Home/ActionToolbarHeader";
+import { getParamFromUrl } from "../../utils";
 
 export default function ScanPage() {
   const navigate = useNavigate();
@@ -36,20 +37,16 @@ export default function ScanPage() {
   };
 
   const onQrCodeRead = (potentialUrl) => {
-    let receipt = null;
-    try {
-      const url = new URL(potentialUrl);
-      const params = new URLSearchParams(url.hash.split("?")[1]);
-      const id = params.get("id");
-      receipt = getReceipt(id);
-    } catch (err) {
-      // Ignore
-    } finally {
-      setList([]);
-      setIsQrReaderOpen(false);
-    }
+    setIsQrReaderOpen(false);
 
-    setList(receipt?.items || []);
+    const id = getParamFromUrl(potentialUrl, "id");
+
+    if (id) {
+      const receipt = getReceipt(id);
+      setList(receipt?.items || []);
+    } else {
+      setList([]);
+    }
   };
 
   const amountOfSelectedItems = useMemo(() => {
