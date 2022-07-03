@@ -73,6 +73,13 @@ export default function ItemDetailsPage() {
     });
   };
 
+  const handleUnitChange = (event) => {
+    setItem({
+      ...item,
+      weightUnit: event.target.value,
+    });
+  };
+
   const saveItem = () => {
     pantryList.unshift(item);
     navigate("/app");
@@ -163,11 +170,11 @@ export default function ItemDetailsPage() {
                   value={item.weightUnit}
                   label="Unit"
                   variant="standard"
-                  onChange={handleChange}
+                  onChange={handleUnitChange}
                   disabled={shouldBlockForm}
                   fullWidth
                 >
-                  <MenuItem value=""> </MenuItem>
+                  <MenuItem value=""></MenuItem>
                   {weightUnits.map((unit) => (
                     <MenuItem value={unit} key={unit}>
                       {unit}
