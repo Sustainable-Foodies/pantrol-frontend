@@ -12,24 +12,29 @@ import AddButton from "./AddButton";
 
 export default function HomePage() {
   const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [itemsSelected, setItemsSelected] = useState({})
 
   const openItemDetails = (item) => {
     navigate(`/app/item?id=${item.id}`);
-  }
+  };
 
-  const onAddClick = () => setIsAddAlertOpen(true)
+  const onAddClick = () => setIsAddAlertOpen(true);
 
   return (
     <div>
-      <ToolbarHeader title="Pantrol" />
+      <ToolbarHeader title="Pantrol" selected />
 
       <Container>
         <YourDataChart />
         <SpacerVertical height={10} />
 
         <PantryListHeader title="Your pantry today:" showFilter />
-        <PantryList list={pantryList} onItemClick={openItemDetails} />
+        <PantryList
+          list={pantryList}
+          onItemClick={openItemDetails}
+          onItemsSelectedChange={setItemsSelected}
+        />
       </Container>
 
       <AddButton onClick={onAddClick} />
