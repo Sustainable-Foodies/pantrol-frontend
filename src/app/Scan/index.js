@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ToolbarHeader from "../Home/ToolbarHeader";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -10,14 +10,23 @@ import { getReceipt } from "../../constants/mock.data";
 import { SpacerVertical } from "../components";
 import QRCodeReader from "../components/QrCodeReader";
 import { Button } from "@mui/material";
+import ActionToolbarHeader from "../Home/ActionToolbarHeader";
 
 export default function ScanPage() {
   const navigate = useNavigate();
-  const [params] = useSearchParams()
+  const [params] = useSearchParams();
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const onItemSelected = (id) => (selected) => {
+    setSelectedItems({
+      ...selectedItems,
+      [id]: selected,
+    });
+  };
 
   const [list, setList] = useState(() => {
     const id = params.get("id");
-    const receipt = getReceipt(id)
+    const receipt = getReceipt(id);
     return receipt?.items || [];
   });
   const [isQrReaderOpen, setIsQrReaderOpen] = useState(false);
@@ -27,37 +36,65 @@ export default function ScanPage() {
   };
 
   const onQrCodeRead = (potentialUrl) => {
-    let receipt = null
+    let receipt = null;
     try {
-      const url = new URL(potentialUrl)
-      const params = new URLSearchParams(url.hash.split('?')[1])
-      const id = params.get('id')
-      receipt = getReceipt(id)
+      const url = new URL(potentialUrl);
+      const params = new URLSearchParams(url.hash.split("?")[1]);
+      const id = params.get("id");
+      receipt = getReceipt(id);
     } catch (err) {
       // Ignore
     } finally {
-      setList([])
+      setList([]);
       setIsQrReaderOpen(false);
     }
 
     setList(receipt?.items || []);
   };
 
+  const amountOfSelectedItems = useMemo(() => {
+    return Object.values(selectedItems).filter((bool) => bool).length;
+  }, [selectedItems]);
+
+  const removeItem = (id) => {
+    const temp = list.filter((item) => !selectedItems[item.id]);
+
+    setList(temp);
+    setSelectedItems({});
+  };
+
   return (
     <>
-      <ToolbarHeader
-        title="Scan your receipt"
-        StartIcon={ArrowBack}
-        onStartButtonClick={() => navigate('/app')}
-        EndButton={
-          <Button color="inherit" onClick={() => navigate('/app', { state: { list }})}>
-            Save
-          </Button>
-        }
-      />
+      {amountOfSelectedItems > 0 ? (
+        <ActionToolbarHeader
+          title={`${amountOfSelectedItems} items selected`}
+          onUnselectClick={() => setSelectedItems({})}
+          endButtons={[
+            <Button key="consume-btn" color="inherit" onClick={removeItem}>
+              Remove
+            </Button>,
+          ]}
+        />
+      ) : (
+        <ToolbarHeader
+          title="Scan your receipt"
+          StartIcon={ArrowBack}
+          onStartButtonClick={() => navigate("/app")}
+          EndButton={
+            <Button
+              color="inherit"
+              onClick={() => navigate("/app", { state: { list } })}
+            >
+              Save
+            </Button>
+          }
+        />
+      )}
+
       <Container>
         <p>
-          Scan Pantrol QR Code in your receipt to include all of your groceries at once to your digital pantry.
+          Scan Pantrol QR Code in your receipt to include all of your groceries
+          at once to your digital pantry.
         </p>
 
         <AddGroceriesItem onClick={onAddGroceriesClick} />
@@ -65,7 +102,11 @@ export default function ScanPage() {
         <SpacerVertical height={20} />
 
         <PantryListHeader title="Edit your list" />
-        <PantryList list={list} />
+        <PantryList
+          list={list}
+          selectedItems={selectedItems}
+          onItemSelected={onItemSelected}
+        />
       </Container>
 
       {isQrReaderOpen && (

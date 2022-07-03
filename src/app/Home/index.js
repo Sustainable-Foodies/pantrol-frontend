@@ -15,22 +15,22 @@ export default function HomePage() {
   const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState({});
-  const location = useLocation()
-  const { state: { pantryList }, actions: { setPantryList } } = useApp()
+  const location = useLocation();
+  const {
+    state: { pantryList },
+    actions: { setPantryList },
+  } = useApp();
 
   useEffect(() => {
     if (location.state?.list) {
-      const list = [...location.state.list]
+      const list = [...location.state.list];
 
-      setPantryList([
-        ...list,
-        ...pantryList,
-      ])
+      setPantryList([...list, ...pantryList]);
 
-      delete location.state.list
+      location.state.list = null;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const openItemDetails = (item) => {
     navigate(`/app/item?id=${item.id}`);
@@ -46,9 +46,9 @@ export default function HomePage() {
   };
 
   const consumeItems = () => {
-    setPantryList(pantryList.filter(item => !selectedItems[item.id]))
-    setSelectedItems({})
-  }
+    setPantryList(pantryList.filter((item) => !selectedItems[item.id]));
+    setSelectedItems({});
+  };
 
   const amountOfSelectedItems = useMemo(() => {
     return Object.values(selectedItems).filter((bool) => bool).length;
@@ -60,7 +60,11 @@ export default function HomePage() {
         <ActionToolbarHeader
           title={`${amountOfSelectedItems} items selected`}
           onUnselectClick={() => setSelectedItems({})}
-          endButtons={[<Button key="consume-btn" color="inherit" onClick={consumeItems}>Consume</Button>]}
+          endButtons={[
+            <Button key="consume-btn" color="inherit" onClick={consumeItems}>
+              Consume
+            </Button>,
+          ]}
         />
       ) : (
         <ToolbarHeader
