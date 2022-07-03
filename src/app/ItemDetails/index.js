@@ -96,19 +96,20 @@ export default function ItemDetailsPage() {
         <SpacerVertical height={height} />
 
         <Box component="form">
-          {!shouldBlockForm && (
-            <>
-              <Button
-                fullWidth
-                variant="contained"
-                onClick={() => setIsQrReaderOpen(true)}
-              >
-                Scan Barcode
-              </Button>
-              <SpacerVertical height={height} />
-            </>
-          )}
-
+          <div>
+            {!shouldBlockForm && (
+              <div style={{ maxWidth: 400, margin: '0 auto' }}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  onClick={() => setIsQrReaderOpen(true)}
+                >
+                  Scan QR Code
+                </Button>
+                <SpacerVertical height={height} />
+              </div>
+            )}
+          </div>
           <Box sx={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}>
             <Container>
               <ImagePlaceholder imgUrl={item.img_url} />
@@ -117,9 +118,9 @@ export default function ItemDetailsPage() {
             <Container>
               <TextField
                 fullWidth
-                label="Barcode"
+                label="Code"
                 variant="standard"
-                disabled={!!item.barcode}
+                disabled
                 value={item.barcode}
               />
               <SpacerVertical height={height} />
