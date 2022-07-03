@@ -23,7 +23,6 @@ export const list = [
   },
   {
     label: "Prarie Gold Wheat",
-    countdown_label: "18 days left",
     weight: 1,
     weightUnit: "kg",
     category: "Non Perishable",
@@ -33,7 +32,6 @@ export const list = [
     label: "Coffee Brazil",
     img_url: "https://m.media-amazon.com/images/I/71ua8UmizRL._SL1400_.jpg",
     category: "Non Perishable",
-    countdown_label: "20 days left",
     weight: 1,
     weightUnit: "kg",
   },
@@ -101,7 +99,6 @@ export const list = [
   {
     label: "Indomie",
     additional_information: "fat 16g, sugar 6g",
-    countdown_label: "1 month left",
     category: "Non Perishable",
     weight: 300,
     weightUnit: "g",
@@ -111,7 +108,6 @@ export const list = [
   {
     label: "Canned Tuna",
     additional_information: "31 calories",
-    countdown_label: "11 days left",
     category: "Non Perishable",
     weight: 300,
     weightUnit: "g",
@@ -226,7 +222,7 @@ export const list = [
   item.id = (index + 1).toString();
   item.barcode = item.label.replace(/ /i, "-").toLowerCase() + "-" + item.id;
 
-  item.subtitle = [item.countdown_label, item.additional_information]
+  item.subtitle = [item.category === 'Non Perishable' && item.category, item.countdown_label, item.additional_information]
     .filter((o) => o)
     .join("\n");
 
