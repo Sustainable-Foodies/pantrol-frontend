@@ -209,7 +209,7 @@ export const list = [
   },
 ].map((item, index) => {
   item.id = (index + 1).toString();
-  item.barcode = item.label.replace(/ /i, "-").toLowerCase() + "-" + item.id;
+  item.barcode = (index + 1).toString();
 
   item.subtitle = [
     item.category === "Non Perishable" && item.category,
