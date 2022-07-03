@@ -10,15 +10,12 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  pantryList,
-  categories,
-  weightUnits,
-} from "../../constants/mock.data";
+import { categories, weightUnits } from "../../constants/mock.data";
 import { getId } from "../../utils";
 import QRCodeReader from "../components/QrCodeReader";
 import SpacerVertical from "../components/Spacer";
 import ToolbarHeader from "../Home/ToolbarHeader";
+import { useApp } from "../store";
 import ImagePlaceholder from "./ImagePlaceholder";
 
 const height = 15;
@@ -29,6 +26,9 @@ export default function ItemDetailsPage() {
   const [isQrReaderOpen, setIsQrReaderOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const {
+    state: { pantryList },
+  } = useApp();
 
   const [item, setItem] = useState(() => {
     const params = new URLSearchParams(location.search);

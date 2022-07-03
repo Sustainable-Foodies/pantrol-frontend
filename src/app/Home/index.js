@@ -88,6 +88,8 @@ export default function HomePage() {
       {isAddItemAlertOpen && (
         <AddItemAlert onClose={() => setIsAddAlertOpen(false)} />
       )}
+
+      <SpacerVertical height={80} />
     </div>
   );
 }
