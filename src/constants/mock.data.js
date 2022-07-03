@@ -53,8 +53,7 @@ export const list = [
     category: "Perishable",
     weight: 420,
     weightUnit: "g",
-    img_url:
-      "https://lh4.googleusercontent.com/vrOwGuYx-i1PUP-X0PvujVgUA2uTztOoLIhFLDikLCpiU8ilcmgpq_yUio4OWMZNPbJn0TLoz0jK0Kh7t63a=w1920-h975",
+    img_url: "https://i.imgur.com/FOo9Pfb.png",
   },
   {
     label: "Aloe Vera",
@@ -63,8 +62,7 @@ export const list = [
     category: "Perishable",
     weight: 120,
     weightUnit: "g",
-    img_url:
-      "https://lh6.googleusercontent.com/wb4dc8h4b_sqR5lzkcrYA6VX_e06rDcSedavzwLQu6afwX_2Gwjo_U3rCyLx4fcCZDdywBh0DfX8JBEU5kbV=w1920-h975",
+    img_url: "https://i.imgur.com/FGlbwEF.png",
   },
   {
     label: "Broccoli",
@@ -73,8 +71,7 @@ export const list = [
     category: "Perishable",
     weight: 850,
     weightUnit: "g",
-    img_url:
-      "https://lh5.googleusercontent.com/xWV95yIRNHDn5kYkyEXBQpcWfA3jmMackYyZNlS43VGjXAeeVeOuLNeX9-729HIpNgcwV93me5Vvb50-h_tP=w1920-h975-rw",
+    img_url: "https://i.imgur.com/xjrGJyK.png",
   },
   {
     label: "Blue band butter",
@@ -83,8 +80,7 @@ export const list = [
     category: "Perishable",
     weight: 400,
     weightUnit: "g",
-    img_url:
-      "https://lh5.googleusercontent.com/vH3Zy5a_soUHlxKD-_cn_1khXhlXylrX5VR_6f0e12BogMUYX0RRMu1Pc-eHmmuXceYnstJdxy2h6reIeTC0=w1920-h975",
+    img_url: "https://i.imgur.com/u9PwVpz.png",
   },
   {
     label: "Heinz Baked Beans",
@@ -93,8 +89,7 @@ export const list = [
     category: "Perishable",
     weight: 1,
     weightUnit: "kg",
-    img_url:
-      "https://lh5.googleusercontent.com/B6_Z0cEVsJvF9mQrSI9s8g3lodUrHl9LNORD3kBgiG_tb42OmvDYrMAyogw9_FqH5HvlFsDzhih2_eV5Fzwj=w1920-h975",
+    img_url: "https://i.imgur.com/IjLIkRx.png",
   },
   {
     label: "Indomie Instant Noodles",
@@ -102,8 +97,7 @@ export const list = [
     category: "Non Perishable",
     weight: 300,
     weightUnit: "g",
-    img_url:
-      "https://lh4.googleusercontent.com/QTV0NFGUeBEeYyDD6GtAf6DAld0yUgtfvEdelnzkkZ8Sr8ScGnA1yd_opYNbUK-_pDBP8J_u5ui72P70iR37=w1920-h975",
+    img_url: "https://i.imgur.com/DnvrGlG.png",
   },
   {
     label: "Canned Tuna",
@@ -111,8 +105,7 @@ export const list = [
     category: "Non Perishable",
     weight: 300,
     weightUnit: "g",
-    img_url:
-      "https://lh5.googleusercontent.com/iypifYOO9eTcJZJNWoquFlPWbEChRJMe8CaLz8ZUG1ffmiuBMC5iVIBRSku4EL0hkekOXgdu0rknNpLe4S2I=w1920-h975",
+    img_url: "https://i.imgur.com/ZtK00ZT.png",
   },
   {
     label: "Apple",
@@ -121,8 +114,7 @@ export const list = [
     category: "Produce",
     weight: 20,
     weightUnit: "g",
-    img_url:
-      "https://lh6.googleusercontent.com/dRYs3CJEfLnkR-6DhRal2dhCx1tOpqWzSPxVfRnqJFLrRgvLiDl3ztDhYLTUswDBDth642C4KMGu1Q3QzYdt=w1920-h975",
+    img_url: "https://i.imgur.com/1fjkbqY.png",
   },
   {
     label: "Onions",
@@ -131,8 +123,7 @@ export const list = [
     category: "Produce",
     weight: 20,
     weightUnit: "g",
-    img_url:
-      "https://lh6.googleusercontent.com/WFs7nZnzcvVldvnCOiscokIvvPOr8sKzoNl-dk9aW7f5RN6jcg33YaOOgCF_NhVELQpcD_f2XFaGVWtkAaKL=w1920-h975",
+    img_url: "https://i.imgur.com/3tTq3rU.png",
   },
   {
     label: "Egg",
@@ -141,8 +132,7 @@ export const list = [
     category: "Dairy",
     weight: 10,
     weightUnit: "g",
-    img_url:
-      "https://lh6.googleusercontent.com/-yxH0rbpSNu7i3RVRTDGUHez57Nmj3sDfA60fUULNvr11NUIeUknJkOT-0VbvCQs7H_objUmkSmRD_QbVs-0=w1920-h975",
+    img_url: "https://i.imgur.com/V3c8d3h.png",
   },
   {
     label: "Eggplants",
@@ -151,8 +141,7 @@ export const list = [
     category: "Produce",
     weight: 20,
     weightUnit: "g",
-    img_url:
-      "https://lh3.googleusercontent.com/kaJflEUHKnh8PhpX0ikMGQcTxArOBmPUoy-hDX-VZn__Li8qQtKKn7_lw-3fPe80AoKsNKpG6CoKVs39THcS=w1920-h975",
+    img_url: "https://i.imgur.com/NawPQQy.png",
   },
   {
     label: "Avocados",
@@ -161,8 +150,7 @@ export const list = [
     category: "Produce",
     weight: 20,
     weightUnit: "g",
-    img_url:
-      "https://lh6.googleusercontent.com/urCuytq4y-TBUAU0_wRenxwzLDlHR0j3murh4nDLkN9xI6KBDP6vOVod5r86m3tuSxGowizosMQguy7VmDa5=w1920-h975",
+    img_url: "https://i.imgur.com/3RRWhng.png",
   },
   {
     label: "Carrots",
@@ -171,7 +159,7 @@ export const list = [
     category: "Produce",
     weight: 10,
     weightUnit: "g",
-    img_url: "https://lh3.googleusercontent.com/nxVLAYhEAivCOfHIDJkaE6sVChGjmUqHezBt9_U2Jgem0dkX_YI9UR9ueqvCm4USJz8LeRPG1QeLcdEtj4pu=w1920-h975",
+    img_url: "https://i.imgur.com/GByhoVu.png",
   },
   {
     label: "Cilantro",
@@ -180,7 +168,7 @@ export const list = [
     category: "Produce",
     weight: 10,
     weightUnit: "g",
-    img_url: "https://lh6.googleusercontent.com/myaekt8VW27Wg03q8K6g6RgZ8--kYpoM66ZVIaNsorf4Mk1f4ODQyMTAlL9E_ptLnbK01aJFYUlv0TYvo8F4=w1920-h975",
+    img_url: "https://i.imgur.com/vIeOvtQ.png",
   },
   {
     label: "Bell Peppers",
@@ -189,7 +177,7 @@ export const list = [
     category: "Produce",
     weight: 100,
     weightUnit: "g",
-    img_url: "https://lh4.googleusercontent.com/r_2CcORINeuIxu65f66zod13PJa3B5y9UIRhymJ_k868bsmwzXKuOlBHQMB4kwDc9VgAXEEhBPwwXBsqVTAW=w1920-h975",
+    img_url: "https://i.imgur.com/rnqu4lg.png",
   },
   {
     label: "White Cabbage",
@@ -198,7 +186,7 @@ export const list = [
     category: "Produce",
     weight: 10,
     weightUnit: "g",
-    img_url: "https://lh3.googleusercontent.com/n203M5PkfSjSZ_iZkmsnViq9OWNFAqIuBOig5kTf_NLo9jY1CCbFVo0eWdEUB-H1jF_NOh3wUo8vLM7y5fIM=w1920-h975",
+    img_url: "https://i.imgur.com/kUVXEcO.png",
   },
   {
     label: "Tomatoes",
@@ -207,7 +195,7 @@ export const list = [
     category: "Produce",
     weight: 40,
     weightUnit: "g",
-    img_url: "https://lh3.googleusercontent.com/dQesYSCBgfmWDkgR3zVl2uuN8gcjns1m-Zyo-ByXQRTKRv0ZN163qSOOaHB_-q_xXCnjagp75USkdFQWXy8N=w1920-h975",
+    img_url: "https://i.imgur.com/2iybi5S.png",
   },
   {
     label: "Banana",
@@ -216,13 +204,18 @@ export const list = [
     category: "Produce",
     weight: 60,
     weightUnit: "g",
-    img_url: "https://lh6.googleusercontent.com/d9ZwD0YcESrHgImnO00aGocivZnP8XwPeMAW4HM2BeVLFIIdnKADzuOIredPIpBW4LjcBkKnnEAE56VLMCdM=w1920-h975",
+    img_url:
+      "https://cdn.shopify.com/s/files/1/0521/2677/7526/products/209bb8a0-30ab-46be-b38d-58c2feb93e4a_1.1a15fb5bcbecbadd4a45822a11bf6257.jpg?v=1613499062",
   },
 ].map((item, index) => {
   item.id = (index + 1).toString();
   item.barcode = item.label.replace(/ /i, "-").toLowerCase() + "-" + item.id;
 
-  item.subtitle = [item.category === 'Non Perishable' && item.category, item.countdown_label, item.additional_information]
+  item.subtitle = [
+    item.category === "Non Perishable" && item.category,
+    item.countdown_label,
+    item.additional_information,
+  ]
     .filter((o) => o)
     .join("\n");
 
