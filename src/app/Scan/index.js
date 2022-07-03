@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import ToolbarHeader from "../Home/ToolbarHeader";
 import ArrowBack from "@mui/icons-material/ArrowBack";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Container } from "@mui/system";
 import AddGroceriesItem from "./AddGroceriesItem";
 import PantryListHeader from "../Home/PantryListHeader";
 import PantryList from "../Home/PantryList";
-import { pantryList } from "../../constants/mock.data";
+import { pantryList, receipts } from "../../constants/mock.data";
 import { SpacerVertical } from "../components";
 import QRCodeReader from "../components/QrCodeReader";
 
 
 export default function ScanPage() {
   const navigate = useNavigate();
-  const [list, setList] = useState([])
+  const location = useLocation()
+  const [list, setList] = useState(() => {
+    const params = new URLSearchParams(location.search)
+    const id = params.get('id')
+    const receipt = receipts.find(r => r.id === id)
+    return receipt?.items || []
+  })
   const [isQrReaderOpen, setIsQrReaderOpen] = useState(false)
 
   const onAddGroceriesClick = () => {

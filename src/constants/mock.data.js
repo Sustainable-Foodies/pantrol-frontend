@@ -1,4 +1,4 @@
-const pantryList = [
+export const pantryList = [
   {
     id: "0001",
     barcode: "sugar-uniao-1kg",
@@ -64,7 +64,7 @@ const pantryList = [
   return item;
 });
 
-const categories = Object.keys(
+export const categories = Object.keys(
   pantryList
     .map((o) => o.category)
     .filter((o) => o)
@@ -74,6 +74,13 @@ const categories = Object.keys(
     }, {})
 );
 
-const weightUnits = ["kg", "oz", "gallon", "liter"];
+export const weightUnits = ["kg", "oz", "gallon", "liter"];
 
-export { categories, pantryList, weightUnits };
+export const receipts = [{
+  id: '0001',
+  items: [
+    pantryList[2],
+    pantryList[1],
+    pantryList[0],
+  ]
+}]
