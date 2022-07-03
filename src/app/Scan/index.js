@@ -1,47 +1,63 @@
 import React, { useState } from "react";
 import ToolbarHeader from "../Home/ToolbarHeader";
 import ArrowBack from "@mui/icons-material/ArrowBack";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Container } from "@mui/system";
 import AddGroceriesItem from "./AddGroceriesItem";
 import PantryListHeader from "../Home/PantryListHeader";
 import PantryList from "../Home/PantryList";
-import { pantryList, receipts } from "../../constants/mock.data";
+import { receipts } from "../../constants/mock.data";
 import { SpacerVertical } from "../components";
 import QRCodeReader from "../components/QrCodeReader";
-
+import { Button } from "@mui/material";
 
 export default function ScanPage() {
   const navigate = useNavigate();
-  const location = useLocation()
+  const [params] = useSearchParams()
+
   const [list, setList] = useState(() => {
-    const params = new URLSearchParams(location.search)
-    const id = params.get('id')
-    const receipt = receipts.find(r => r.id === id)
-    return receipt?.items || []
-  })
-  const [isQrReaderOpen, setIsQrReaderOpen] = useState(false)
+    const id = params.get("id");
+    const receipt = receipts.find((r) => r.id === id);
+    return receipt?.items || [];
+  });
+  const [isQrReaderOpen, setIsQrReaderOpen] = useState(false);
 
   const onAddGroceriesClick = () => {
-    setIsQrReaderOpen(true)
-  }
+    setIsQrReaderOpen(true);
+  };
 
-  const onQrCodeRead = (text) => {
-    setIsQrReaderOpen(false)
-    setList(pantryList)
-  }
+  const onQrCodeRead = (potentialUrl) => {
+    let receipt = null
+    try {
+      const url = new URL(potentialUrl)
+      const params = new URLSearchParams(url.hash.split('?')[1])
+      const id = params.get('id')
+      receipt = receipt[id]
+    } catch (err) {
+      // Ignore
+    } finally {
+      setList([])
+      setIsQrReaderOpen(false);
+    }
+
+    setList(receipt?.items || []);
+  };
 
   return (
     <>
       <ToolbarHeader
         title="Scan your receipt"
         StartIcon={ArrowBack}
-        onStartButtonClick={() => navigate(-1)}
+        onStartButtonClick={() => navigate('/app')}
+        EndButton={
+          <Button color="inherit" onClick={() => navigate('/app', { state: { list }})}>
+            Save
+          </Button>
+        }
       />
       <Container>
         <p>
-          Scan the QR Code to include the item and all the information to your
-          digital pantry.
+          Scan Pantrol QR Code in your receipt to include all of your groceries at once to your digital pantry.
         </p>
 
         <AddGroceriesItem onClick={onAddGroceriesClick} />
@@ -53,7 +69,10 @@ export default function ScanPage() {
       </Container>
 
       {isQrReaderOpen && (
-        <QRCodeReader onClose={() => setIsQrReaderOpen(false)} onResult={onQrCodeRead} />
+        <QRCodeReader
+          onClose={() => setIsQrReaderOpen(false)}
+          onResult={onQrCodeRead}
+        />
       )}
     </>
   );
