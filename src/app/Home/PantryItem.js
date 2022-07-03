@@ -15,7 +15,7 @@ export default function PantryItem({
   isSelected = false,
 }) {
   return (
-    <div style={{ display: "flex", alignItems: 'center' }}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       <ListItemButton onClick={onClick}>
         <ListItemAvatar>
           {imgUrl ? (
@@ -33,12 +33,14 @@ export default function PantryItem({
         />
       </ListItemButton>
 
-      <div>
-        <Checkbox
-          checked={isSelected}
-          onChange={(event) => onSelect(event.target.checked)}
-        />
-      </div>
+      {onSelect && (
+        <div>
+          <Checkbox
+            checked={isSelected}
+            onChange={(event) => onSelect(event.target.checked)}
+          />
+        </div>
+      )}
     </div>
   );
 }

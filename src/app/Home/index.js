@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ToolbarHeader from "./ToolbarHeader";
 import PantryList from "./PantryList";
 import { pantryList } from "../../constants/pantry.list";
@@ -9,11 +9,12 @@ import { Container } from "@mui/material";
 import AddItemAlert from "./AddItemAlert";
 import { useNavigate } from "react-router-dom";
 import AddButton from "./AddButton";
+import ActionToolbarHeader from "./ActionToolbarHeader";
 
 export default function HomePage() {
   const [isAddItemAlertOpen, setIsAddAlertOpen] = useState(false);
   const navigate = useNavigate();
-  const [itemsSelected, setItemsSelected] = useState({})
+  const [selectedItems, setSelectedItems] = useState({});
 
   const openItemDetails = (item) => {
     navigate(`/app/item?id=${item.id}`);
@@ -21,9 +22,31 @@ export default function HomePage() {
 
   const onAddClick = () => setIsAddAlertOpen(true);
 
+  const onItemSelected = (id) => (selected) => {
+    setSelectedItems({
+      ...selectedItems,
+      [id]: selected,
+    });
+  };
+
+  const amountOfSelectedItems = useMemo(() => {
+    return Object.values(selectedItems).filter((bool) => bool).length;
+  }, [selectedItems]);
+
   return (
     <div>
-      <ToolbarHeader title="Pantrol" selected />
+      {amountOfSelectedItems > 0 ? (
+        <ActionToolbarHeader
+          title={`${amountOfSelectedItems} items selected`}
+          onUnselectClick={() => setSelectedItems({})}
+        />
+      ) : (
+        <ToolbarHeader
+          title="Pantrol"
+          selected
+          onUnselectClick={() => setSelectedItems({})}
+        />
+      )}
 
       <Container>
         <YourDataChart />
@@ -33,7 +56,8 @@ export default function HomePage() {
         <PantryList
           list={pantryList}
           onItemClick={openItemDetails}
-          onItemsSelectedChange={setItemsSelected}
+          selectedItems={selectedItems}
+          onItemSelected={onItemSelected}
         />
       </Container>
 

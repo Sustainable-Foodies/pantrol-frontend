@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import List from "@mui/material/List";
 import PantryItem from "./PantryItem";
 import { Divider } from "@mui/material";
 
-export default function PantryList({ list, onItemClick, onItemsSelectedChange }) {
-  const [selectedItems, setSelectedItems] = useState({});
-
-  useEffect(() => {
-    onItemsSelectedChange(selectedItems)
-  }, [selectedItems, onItemsSelectedChange])
-  
-  const onItemSelected = (id) => (selected) => {
-    setSelectedItems({
-      ...selectedItems,
-      [id]: selected,
-    })
-  }
-
+export default function PantryList({
+  list,
+  onItemClick,
+  selectedItems,
+  onItemSelected,
+}) {
   return (
     <List>
       {list.map((item) => (
@@ -26,8 +18,8 @@ export default function PantryList({ list, onItemClick, onItemsSelectedChange })
             subtitle={item.subtitle}
             onClick={() => onItemClick(item)}
             imgUrl={item.img_url}
-            isSelected={selectedItems[item.id]}
-            onSelect={onItemSelected(item.id)}
+            isSelected={selectedItems ? selectedItems[item.id] : false}
+            onSelect={onItemSelected ? onItemSelected(item.id) : undefined}
           />
           <Divider />
         </div>
